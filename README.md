@@ -10,7 +10,9 @@ La especificación formal de la primera versión está en [docs/minilang-spec.md
 - Fase 1: lexer manual, diagnósticos léxicos y pruebas, completada.
 - Fase 2: parser recursive descent, AST, recuperación sintáctica y pruebas, completada.
 - Fase 3: tabla de símbolos, ámbitos, tipos y análisis semántico, completada.
-- Fases posteriores: pendientes.
+- Fase 4: diagnósticos centralizados, formato localizado y pruebas, completada.
+- Fase 5: representación intermedia TAC, temporales, etiquetas y pruebas, completada.
+- Fase 6: máquina virtual objetivo para ejecutar la IR, completada.
 
 ## Principios
 
@@ -22,4 +24,4 @@ La especificación formal de la primera versión está en [docs/minilang-spec.md
 
 ## Próximo paso
 
-El siguiente paso es la Fase 4: consolidación del sistema de diagnósticos y recuperación entre fases.
+Las fases principales del compilador están implementadas. Las siguientes mejoras pueden centrarse en una interfaz `Compiler` de extremo a extremo, ejemplos ejecutables y ampliaciones del lenguaje.

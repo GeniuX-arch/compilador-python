@@ -83,6 +83,8 @@ class Parser:
             return self._parse_print_statement()
         if self._match(TokenType.LEFT_BRACE):
             return self._parse_block(already_consumed=True)
+        if self._check(TokenType.IDENTIFIER) and self._peek().type is TokenType.ASSIGN:
+            return self._parse_assignment()
         return self._parse_expression_statement()
 
     def _parse_variable_declaration(self, *, require_semicolon: bool = True) -> VariableDeclaration:
@@ -353,6 +355,10 @@ class Parser:
         if not self._check(TokenType.EOF):
             self._position += 1
         return self._previous
+
+    def _peek(self) -> Token:
+        next_position = min(self._position + 1, len(self.tokens) - 1)
+        return self.tokens[next_position]
 
     def _check(self, *token_types: TokenType) -> bool:
         return self._current.type in token_types

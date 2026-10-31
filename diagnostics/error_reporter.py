@@ -23,6 +23,18 @@ class ErrorReporter:
 
         return any(item.severity is Severity.ERROR for item in self._diagnostics)
 
+    @property
+    def error_count(self) -> int:
+        """Cantidad de diagnósticos con severidad de error."""
+
+        return sum(item.severity is Severity.ERROR for item in self._diagnostics)
+
+    @property
+    def warning_count(self) -> int:
+        """Cantidad de diagnósticos con severidad de advertencia."""
+
+        return sum(item.severity is Severity.WARNING for item in self._diagnostics)
+
     def report(
         self,
         code: str,
@@ -52,3 +64,10 @@ class ErrorReporter:
 
     def __iter__(self) -> Iterator[Diagnostic]:
         return iter(self._diagnostics)
+
+    def format_diagnostics(self, source: str | None = None, source_name: str = "<source>") -> str:
+        """Formatea todos los diagnósticos en su orden de emisión."""
+
+        return "\n\n".join(
+            diagnostic.format(source, source_name) for diagnostic in self._diagnostics
+        )
