@@ -16,6 +16,9 @@ dev = ["pytest>=8.0", "ruff>=0.6"]
 pythonpath = ["."]
 testpaths = ["tests"]
 
+[tool.setuptools.packages.find]
+include = ["lexer*", "parser*", "semantic*", "diagnostics*", "ir*", "target*"]
+
 [tool.ruff]
 line-length = 100
 target-version = "py312"
